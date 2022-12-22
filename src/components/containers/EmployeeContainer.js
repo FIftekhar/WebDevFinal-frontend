@@ -10,7 +10,7 @@ import { EmployeeView } from "../views";
 
 class EmployeeContainer extends Component {
   componentDidMount() {
-    //getting instructor ID from url
+    //getting employee ID from url
     this.props.fetchEmployee(this.props.match.params.id);
     this.props.fetchTasks();
   }
