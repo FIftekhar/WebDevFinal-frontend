@@ -3,20 +3,20 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchAllCoursesThunk, deleteCourseThunk } from "../../store/thunks";
+import { fetchAllTasksThunk, deleteTaskThunk } from "../../store/thunks";
 
-import AllCoursesView from "../views/AllCoursesView";
+import AllTasksView from "../views/AllTasksView";
 
-class AllCoursesContainer extends Component {
+class AllTasksContainer extends Component {
   componentDidMount() {
-    this.props.fetchAllCourses();
+    this.props.fetchAllTasks();
   }
   render() {
     return (
       <div>
-        <AllCoursesView
-          courses={this.props.allCourses}
-          deleteCourse={this.props.deleteCourse}
+        <AllTasksView
+          tasks={this.props.allTasks}
+          deleteTask={this.props.deleteTask}
         />
       </div>
     );
@@ -26,27 +26,27 @@ class AllCoursesContainer extends Component {
 // Map state to props;
 const mapState = (state) => {
   return {
-    allCourses: state.allCourses,
+    allTasks: state.allTasks,
   };
 };
 
 return (
   <div>
-    {courses.map((course) => {
-      let title = course.title;
+    {tasks.map((task) => {
+      let title = task.title;
       return (
-        <div key={course.id}>
-          <Link to={`/course/${course.id}`}>
+        <div key={task.id}>
+          <Link to={`/task/${task.id}`}>
             <h1>{title}</h1>
           </Link>
-          <button onClick={() => deleteCourse(course.id)}>Delete</button>
+          <button onClick={() => deleteTask(task.id)}>Delete</button>
         </div>
       );
     })}
-    <Link to={`/newcourse`}>
-      <button>Add New Course</button>
+    <Link to={`/newtask`}>
+      <button>Add New Task</button>
     </Link>
   </div>
 );
 
-export default connect(mapState, mapDispatch)(AllCoursesContainer);
+export default connect(mapState, mapDispatch)(AllTasksContainer);
