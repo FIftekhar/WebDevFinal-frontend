@@ -1,6 +1,6 @@
 # WebDevHW3-frontend
 
-starter code for CSCI 39548 HW3
+Code for Web Dev Final assignment (front end). The corresponding backend repo is located [here](https://github.com/arahman63/backend).
 
 Group members:
  - Fatin Iftekhar @FIftekhar
