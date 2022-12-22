@@ -43,4 +43,36 @@ class EditEmployeeContainer extends Component {
             this.setState({taskId: event.target.value})
         }
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        //implementing form validation
+        if (this.state.firstname === "" ) {
+            this.setState({error: "Must enter a first name!"});
+            return;
+        } else if(this.state.lastname === ""){
+            this.setState({error: "Must enter a last name!"});
+            return;
+        } else if(this.state.department === ""){
+            this.setState({error: "Must enter a department!"});
+            return;
+        }
+
+        //get new info for employee from form input
+        let employee = {
+            id: this.props.employee.id,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            department: this.state.department,
+            taskId: this.state.taskId
+        };
+        
+        this.props.editEmployee(employee);
+
+        this.setState({
+            redirect: true, 
+            redirectId: this.props.employee.id
+        });
+
+    }
 }
