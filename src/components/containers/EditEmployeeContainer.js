@@ -53,15 +53,15 @@ class EditEmployeeContainer extends Component {
         event.preventDefault();
         //implementing form validation
         if (this.state.firstname === "" ) {
-          this.setState({error: "Error: Firstname cannot be empty"});
+          this.setState({error: "Must enter a first name!"});
           return;
         }
         else if(this.state.lastname === ""){
-          this.setState({error: "Error: Lastname cannot be empty"});
+          this.setState({error: "Must enter a last name!"});
           return;
         }
         else if(this.state.department === ""){
-          this.setState({error: "Error: Department cannot be empty"});
+          this.setState({error: "Employees must be in a department!"});
           return;
         }
 
@@ -120,6 +120,7 @@ class EditEmployeeContainer extends Component {
 
           </form>
           { this.state.error !=="" && <p>{this.state.error}</p> }
+
         </div>
         )
     }
