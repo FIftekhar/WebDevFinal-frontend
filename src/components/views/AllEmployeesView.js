@@ -3,21 +3,21 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const AllInstructorsView = (props) => {
-  if (!props.allInstructors.length) {
+const AllEmployeesView = (props) => {
+  if (!props.allEmployees.length) {
     return <div>There are no instructors.</div>;
   }
 
   return (
     <div>
-      {props.allInstructors.map((instructor) => {
-        let name = instructor.firstname + " " + instructor.lastname;
+      {props.allEmployees.map((employee) => {
+        let name = employee.firstname + " " + employee.lastname;
         return (
-          <div key={instructor.id}>
-            <Link to={`/instructor/${instructor.id}`}>
+          <div key={employee.id}>
+            <Link to={`/employee/${employee.id}`}>
               <h1>{name}</h1>
             </Link>
-            <p>{instructor.department}</p>
+            <p>{employee.department}</p>
           </div>
         );
       })}
@@ -25,8 +25,8 @@ const AllInstructorsView = (props) => {
   );
 };
 
-AllInstructorsView.propTypes = {
-  allInstructors: PropTypes.array.isRequired,
+AllEmployeesView.propTypes = {
+  allEmployees: PropTypes.array.isRequired,
 };
 
-export default AllInstructorsView;
+export default AllEmployeesView;
