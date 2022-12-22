@@ -1,40 +1,41 @@
+/** @format */
 
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllInstructorsThunk } from "../../store/thunks";
-import { AllInstructorsView } from "../views";
+import { fetchAllInstructorsThunk as fetchAllEmployeesThunk } from "../../store/thunks";
+import { AllEmployeesView } from "../views";
 
-class AllInstructorsContainer extends Component {
+class AllEmployeesContainer extends Component {
   componentDidMount() {
     console.log(this.props);
-    this.props.fetchAllInstructors();
+    this.props.fetchAllEmployees();
   }
 
   render() {
-    return <AllInstructorsView allInstructors={this.props.allInstructors} />;
+    return <AllEmployeesView allEmployees={this.props.allEmployees} />;
   }
 }
 
 // Map state to props;
 const mapState = (state) => {
   return {
-    allInstructors: state.allInstructors,
+    allEmployees: state.allEmployees,
   };
 };
 
 // Map dispatch to props;
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllInstructors: () => dispatch(fetchAllInstructorsThunk()),
+    fetchAllEmployees: () => dispatch(fetchAllEmployeesThunk()),
   };
 };
 
 // Type check props;
-AllInstructorsContainer.propTypes = {
-  allInstructors: PropTypes.array.isRequired,
-  fetchAllInstructors: PropTypes.func.isRequired,
+AllEmployeesContainer.propTypes = {
+  allEmployees: PropTypes.array.isRequired,
+  fetchAllEmployees: PropTypes.func.isRequired,
 };
 
 // Export our store-connected container by default;
-export default connect(mapState, mapDispatch)(AllInstructorsContainer);
+export default connect(mapState, mapDispatch)(AllEmployeesContainer);
