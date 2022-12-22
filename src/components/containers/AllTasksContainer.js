@@ -1,42 +1,39 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+/** @format */
 
-import { 
-	fetchAllTasksThunk, //as fetchAllTasksThunk,
-	deleteTaskThunk //as deleteTaskThunk
-} from '../../store/thunks';
+import { Link } from "react-router-dom";
 
-import AllTasksView from '../views/AllTasksView';
+const AllCoursesView = (props) => {
+  let { courses, deleteCourse } = props;
+  //courses = [{id: 300, title: "hello"}]
+  if (!courses.length) {
+    return (
+      <div>
+        <p>There are no courses.</p>
+        <Link to={`/newcourse`}>
+          <button>Add New Course</button>
+        </Link>
+      </div>
+    );
+  }
 
-class AllTasksContainer extends Component {
-    componentDidMount() {
-      	this.props.fetchAllTasks();
-    }
-    render(){
-        return(
-            <div>
-                <AllTasksView 
-					tasks={this.props.allTasks}
-					deleteTask={this.props.deleteTask}   
-                />
-            </div>
-        )
-    }
-}
-
-// Map state to props;
-const mapState = (state) => {
-  return {
-    allTasks: state.allTasks,
-  };
+  return (
+    <div>
+      {courses.map((course) => {
+        let title = course.title;
+        return (
+          <div key={course.id}>
+            <Link to={`/course/${course.id}`}>
+              <h1>{title}</h1>
+            </Link>
+            <button onClick={() => deleteCourse(course.id)}>Delete</button>
+          </div>
+        );
+      })}
+      <Link to={`/newcourse`}>
+        <button>Add New Course</button>
+      </Link>
+    </div>
+  );
 };
 
-// Map dispatch to props;
-const mapDispatch = (dispatch) => {
-  return {
-    fetchAllTasks: () => dispatch(fetchAllTasksThunk()),
-    deleteTask: (taskID) => dispatch(deleteTaskThunk(taskID)),
-  };
-};
-
-export default connect(mapState, mapDispatch)(AllTasksContainer);
+export default AllCoursesView;
