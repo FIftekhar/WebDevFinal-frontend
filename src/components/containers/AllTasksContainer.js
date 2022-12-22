@@ -30,12 +30,24 @@ const mapState = (state) => {
   };
 };
 
-// Map dispatch to props;
-const mapDispatch = (dispatch) => {
-  return {
-    fetchAllCourses: () => dispatch(fetchAllCoursesThunk()),
-    deleteCourse: (courseId) => dispatch(deleteCourseThunk(courseId)),
-  };
+  return (
+    <div>
+      {courses.map((course) => {
+        let title = course.title;
+        return (
+          <div key={course.id}>
+            <Link to={`/course/${course.id}`}>
+              <h1>{title}</h1>
+            </Link>
+            <button onClick={() => deleteCourse(course.id)}>Delete</button>
+          </div>
+        );
+      })}
+      <Link to={`/newcourse`}>
+        <button>Add New Course</button>
+      </Link>
+    </div>
+  );
 };
 
 export default connect(mapState, mapDispatch)(AllCoursesContainer);
