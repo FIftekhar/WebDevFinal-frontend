@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTaskThunk } from "../../store/thunks";
-import { TaskView } from "../views";
+import { fetchCourseThunk } from "../../store/thunks";
+import { CourseView } from "../views";
 
-class TaskContainer extends Component {
+class CourseContainer extends Component {
   componentDidMount() {
     //getting course ID from url
-    this.props.fetchTask(this.props.match.params.id);
+    this.props.fetchCourse(this.props.match.params.id);
   }
 
   render() {
     return (
-      <TaskView 
-        task={this.props.task}
+      <CourseView 
+        course={this.props.course}
       />
     );
   }
@@ -21,15 +21,15 @@ class TaskContainer extends Component {
 // map state to props
 const mapState = (state) => {
   return {
-    task: state.task,
+    course: state.course,
   };
 };
 
 // map dispatch to props
 const mapDispatch = (dispatch) => {
   return {
-    fetchTask: (id) => dispatch(fetchTaskThunk(id)),
+    fetchCourse: (id) => dispatch(fetchCourseThunk(id)),
   };
 };
 
-export default connect(mapState, mapDispatch)(TaskContainer);
+export default connect(mapState, mapDispatch)(CourseContainer);
