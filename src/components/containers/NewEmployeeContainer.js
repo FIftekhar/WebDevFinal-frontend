@@ -1,50 +1,59 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import NewEmployeeView from '../views/NewEmployeeView';
+import { addEmployeeThunk } from '../../store/thunks';
 
-import NewTaskView from '../views/NewTaskView';
-import { addTaskThunk } from '../../store/thunks';
-
-
-class NewTaskContainer extends Component {
+class NewEmployeeContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          description: "", 
-          priority: "",
-          completion: "", 
-          employeeID: null, 
+          firstname: "", 
+          lastname: "",
+          department: "", 
+          employeeId: null, 
           redirect: false, 
-          redirectId: null
+          redirectId: null,
+          error: ""
         };
     }
 
     handleChange = event => {
-		this.setState({
-			[event.target.name]: event.target.value
-		});
+      this.setState({
+        [event.target.name]: event.target.value
+      });
     }
 
     handleSubmit = async event => {
-        event.preventDefault();
+      event.preventDefault();
+      //dont need ID because the task has not been created yet
+      if(this.state.firstname===""){
+        this.setState({error:"Must enter a first name."});
+        return;
+      }
+      if(this.state.lastname===""){
+        this.setState({error:"Must enter a last name."});
+        return;
+      }
+      if(this.state.department===""){
+        this.setState({error:"Must enter a department."});
+        return;
+      }
 
-        let task = {
-            description: this.state.description,
-            priority: this.state.priority,
-            completion: this.state.completion,
-            employeeID: this.state.employeeID
-        };
-        
-        let newTask = await this.props.addTask(task);
+      let employee = {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          department: this.state.department,
+          employeeId: this.state.employeeId
+      };
+      
+      let newEmployee = await this.props.addEmployee(employee);
 
-        this.setState({
-          description: this.state.description,
-          priority: this.state.priority,
-          completion: this.state.completion,
-          employeeID: null, 
-          redirect: true, 
-          redirectId: newTask.id
-        });
+      this.setState({
+        redirect: true, 
+        redirectId: newEmployee.id,
+        error: ""
+      });
     }
 
     componentWillUnmount() {
@@ -52,14 +61,18 @@ class NewTaskContainer extends Component {
     }
 
     render() {
-      //go to single course view of newly created course
         if(this.state.redirect) {
-          return (<Redirect to={`/task/${this.state.redirectId}`}/>)
+          return (
+            <Redirect 
+              to={`/employee/${this.state.redirectId}`}
+            />
+          )
         }
         return (
-          <NewTaskView 
+          <NewEmployeeView 
             handleChange = {this.handleChange} 
-            handleSubmit={this.handleSubmit}      
+            handleSubmit = {this.handleSubmit}
+            error = {this.state.error}      
           />
         );
     }
@@ -67,8 +80,8 @@ class NewTaskContainer extends Component {
 
 const mapDispatch = (dispatch) => {
     return({
-        addTask: (task) => dispatch(addTaskThunk(task)),
+        addEmployee: (employee) => dispatch(addEmployeeThunk(employee)),
     })
 }
 
-export default connect(null, mapDispatch)(NewTaskContainer);
+export default connect(null, mapDispatch)(NewEmployeeContainer);

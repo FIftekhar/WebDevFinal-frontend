@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-
 import { fetchEmployeeThunk, editEmployeeThunk, fetchAllTasksThunk  } from '../../store/thunks';
-
 
 class EditEmployeeContainer extends Component {
     constructor(props){
@@ -20,8 +18,6 @@ class EditEmployeeContainer extends Component {
     }
 
     componentDidMount() {
-        //getting employee ID from url
-      
         this.props.fetchEmployee(this.props.match.params.id);
         this.props.fetchTasks();
         this.setState({
@@ -39,15 +35,12 @@ class EditEmployeeContainer extends Component {
     }
 
     handleSelectChange = event => {
-     
       if (event.target.value === "not assigned to anything") {
         this.setState({taskId:null});
       } else {
         this.setState({taskId: event.target.value})
       }
     }
-
-    
 
     handleSubmit = event => {
         event.preventDefault();
@@ -96,32 +89,36 @@ class EditEmployeeContainer extends Component {
       
         //go to single employee view of the edited employee
         if(this.state.redirect) {
-          return (<Redirect to={`/employee/${this.state.redirectId}`}/>)
+          return (
+            <Redirect 
+              to={`/employee/${this.state.redirectId}`}
+            />
+          )
         }
 
         return (
-        <div>
-        <form style={{textAlign: 'center'}} onSubmit={(e) => this.handleSubmit(e)}>
-            <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" value={this.state.firstname || ''} placeholder={employee.firstname} onChange ={(e) => this.handleChange(e)}/>
-            <br/>
+          <div>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => this.handleSubmit(e)}>
+              <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
+              <input type="text" name="firstname" value={this.state.firstname || ''} placeholder={employee.firstname} onChange ={(e) => this.handleChange(e)}/>
+              <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname" value={this.state.lastname || ''} placeholder={employee.lastname} onChange={(e) => this.handleChange(e)}/>
-            <br/>
+              <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
+              <input type="text" name="lastname" value={this.state.lastname || ''} placeholder={employee.lastname} onChange={(e) => this.handleChange(e)}/>
+              <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Department: </label>
-            <input type="text" name="department" value={this.state.department || ''} placeholder={employee.department} onChange={(e) => this.handleChange(e)}/>
-            <br/>
+              <label style={{color:'#11153e', fontWeight: 'bold'}}>Department: </label>
+              <input type="text" name="department" value={this.state.department || ''} placeholder={employee.department} onChange={(e) => this.handleChange(e)}/>
+              <br/>
 
-            <button type="submit">
-              Submit
-            </button>
+              <button type="submit">
+                Submit
+              </button>
 
-          </form>
-          { this.state.error !=="" && <p>{this.state.error}</p> }
+            </form>
+            { this.state.error !=="" && <p>{this.state.error}</p> }
 
-        </div>
+          </div>
         )
     }
 }

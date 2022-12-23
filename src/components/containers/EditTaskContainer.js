@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-
 import { fetchTaskThunk, editTaskThunk, fetchAllEmployeesThunk } from '../../store/thunks';
 
 class EditTaskContainer extends Component {
@@ -19,14 +18,12 @@ class EditTaskContainer extends Component {
     }
 
     componentDidMount() {
-        //getting task ID from url
-      
         this.props.fetchTask(this.props.match.params.id);
         this.props.fetchEmployees();
         this.setState({
             description: this.props.task.description, 
-            prioritylevel: this.props.task.prioritylevel,
-            completionstatus: this.props.task.completionstatus,
+            priorityLevel: this.props.task.prioritylevel,
+            completionStatus: this.props.task.completionstatus,
             employeeId: this.props.task.employeeId, 
         });
       }
@@ -44,8 +41,6 @@ class EditTaskContainer extends Component {
         this.setState({employeeId: event.target.value})
       }
     }
-
-    
 
     handleSubmit = event => {
         event.preventDefault();
@@ -85,7 +80,6 @@ class EditTaskContainer extends Component {
           redirect: true, 
           redirectId: this.props.task.id
         });
-
     }
 
     componentWillUnmount() {
@@ -144,7 +138,7 @@ class EditTaskContainer extends Component {
             <Link to={`/employee/${task.employeeId}`}>{task.employee.firstname}</Link>
             <button onClick={async () => {await editTask({id:task.id, employeeId: null});  fetchTask(task.id)}}>Unassign</button>
             </div>
-            : <div> No employee currently assigned </div>
+            : <div> No employee assigned to this task! </div>
           }
 
           <div> Other employees
@@ -154,7 +148,7 @@ class EditTaskContainer extends Component {
                 <Link to={`/employee/${employee.id}`}>
                   <h4>{employee.firstname}</h4>
                 </Link>
-                <button onClick={async() => {await editTask({id:task.id, employeeId: employee.id}); fetchTask(task.id)}}>Assign this employee</button>
+                <button onClick={async() => {await editTask({id:task.id, employeeId: employee.id}); fetchTask(task.id)}}>Choose this employee</button>
             </div>
             )})
           }
