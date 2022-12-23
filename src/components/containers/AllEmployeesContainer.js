@@ -1,9 +1,7 @@
-/** @format */
-
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllInstructorsThunk as fetchAllEmployeesThunk } from "../../store/thunks";
+import { fetchAllEmployeesThunk, deleteEmployeeThunk} from "../../store/thunks";
 import { AllEmployeesView } from "../views";
 
 class AllEmployeesContainer extends Component {
