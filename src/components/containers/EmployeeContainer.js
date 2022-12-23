@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { 
-  fetchEmployeeThunk,
-  fetchAllTasksThunk,
-  editTaskThunk 
-} from "../../store/thunks";
-
+import { fetchEmployeeThunk, fetchAllTasksThunk, editTaskThunk } from "../../store/thunks";
 import { EmployeeView } from "../views";
 
 class EmployeeContainer extends Component {
   componentDidMount() {
-    //getting employee ID from url
     this.props.fetchEmployee(this.props.match.params.id);
     this.props.fetchTasks();
   }
@@ -26,12 +20,10 @@ class EmployeeContainer extends Component {
   }
 }
 
-// map state to props
 const mapState = (state) => {
   return {
     employee: state.employee,
     allTasks: state.allTasks,
-
   };
 };
 
