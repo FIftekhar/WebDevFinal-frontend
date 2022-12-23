@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const AllEmployeesView = (props) => {
   if (!props.allEmployees.length) {
-    return <div>There are no instructors.</div>;
+    return <div>There are no employees.</div>;
   }
 
   return (
