@@ -4,17 +4,14 @@ import { Link } from "react-router-dom";
 
 const EmployeeView = (props) => {
   const { employee, editTask, allTasks } = props;
-  let assignedTasks = allTasks.filter(
-    (task) => task.employeeId === employee.id
-  );
-  let availableTasks = allTasks.filter(
-    (task) => task.employeeId !== employee.id
-  );
+  let assignedTasks = allTasks.filter(task => task.employeeId === employee.id);
+  let availableTasks = allTasks.filter(task => task.employeeId !== employee.id);
 
   return (
     <div>
       <h1>{employee.firstname}</h1>
       <h3>{employee.department}</h3>
+      <Link to={{display:`/editemployee/${employee.id}`}}>Edit Employee information</Link>
       <div
         style={{
           display: "flex",
