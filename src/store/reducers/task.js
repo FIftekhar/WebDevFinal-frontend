@@ -4,7 +4,6 @@ const initialState = {
   instructor: {},
 };
 
-// REDUCER;
 const task = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_TASK:

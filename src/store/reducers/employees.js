@@ -1,6 +1,5 @@
 import * as at from "../actions/actionTypes";
 
-// REDUCER;
 const allEmployees = (state = [], action) => {
   switch (action.type) {
     case at.FETCH_ALL_EMPLOYEES:
