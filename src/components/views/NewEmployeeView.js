@@ -1,9 +1,11 @@
 /** @format */
+import Heading from "../Heading";
 
 const NewEmployeeView = (props) => {
   const { handleChange, handleSubmit, error } = props;
   return (
     <div className="root">
+      <Heading />
       <div className="formContainer">
         <div className="formTitle">
           <h2

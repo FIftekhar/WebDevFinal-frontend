@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchTaskThunk, editEmployeeThunk } from "../../store/thunks";
@@ -10,10 +12,7 @@ class TaskContainer extends Component {
 
   render() {
     return (
-      <TaskView 
-        task={this.props.task}
-        editEmployee={this.props.editEmployee}
-      />
+      <TaskView task={this.props.task} editEmployee={this.props.editEmployee} />
     );
   }
 }
