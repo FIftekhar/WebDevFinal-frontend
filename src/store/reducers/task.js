@@ -1,10 +1,11 @@
 import { FETCH_TASK } from "../actions/actionTypes";
 
 const initialState = {
-  instructor: {},
+  employee: {},
 };
 
-const task = (state=initialState, action) => {
+// REDUCER;
+const task = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TASK:
       return action.payload;

@@ -11,7 +11,7 @@ const allTasks = (state=[], action) => {
     case at.EDIT_TASK:
       return state.map(task => { 
         return (
-          task.id===action.payload.id ? action.payload : task
+          task.id === action.payload.id ? action.payload : task
         );
       });
     default:
