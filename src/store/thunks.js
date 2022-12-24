@@ -2,7 +2,7 @@ import * as ac from './actions/actionCreators';
 const axios = require('axios');
 
 //PATH (should be where your server is running)
-let path = "http://localhost:5001/api";
+let path = "http://localhost:5000/api";
 
 // THUNKS
 
