@@ -2,21 +2,25 @@
 
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Heading from "../Heading";
 
 const AllEmployeesView = (props) => {
-  let {allEmployees,deleteEmployee} = props;
+  let { allEmployees, deleteEmployee } = props;
   if (!allEmployees.length) {
-    return ( <div>
-      <p>There are no employees.</p>
-      <Link to={`/newemployee`}>
-        <button>Add New Employee</button>
-      </Link>
+    return (
+      <div>
+        <Heading />
+        <p>There are no employees.</p>
+        <Link to={`/newemployee`}>
+          <button>Add New Employee</button>
+        </Link>
       </div>
     );
   }
 
   return (
     <div>
+      <Heading />
       {props.allEmployees.map((employee) => {
         let name = employee.firstname + " " + employee.lastname;
         return (
