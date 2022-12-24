@@ -1,11 +1,5 @@
 import * as at from './actionTypes';
 
-// ACTION CREATORS;
-/** needs to be an action creator
- * for each action type
- */
-
-// All instructors
 export const fetchAllEmployees = (employees) => {
   return {
     type: at.FETCH_ALL_EMPLOYEES,
@@ -13,7 +7,6 @@ export const fetchAllEmployees = (employees) => {
   };
 };
 
-//Single instructor
 export const fetchEmployee = (employee) => {
   return {
     type: at.FETCH_EMPLOYEE,
@@ -21,7 +14,6 @@ export const fetchEmployee = (employee) => {
   };
 };
 
-//All courses
 export const fetchAllTasks = (tasks) => {
   return {
     type: at.FETCH_ALL_TASKS,
@@ -43,7 +35,6 @@ export const deleteTask = (taskId) => {
   };
 };
 
-
 export const editTask = (task) => {
   return {
     type: at.EDIT_TASK,
@@ -51,7 +42,6 @@ export const editTask = (task) => {
   };
 };
 
-//Single course
 export const fetchTask = (task) => {
   return {
     type: at.FETCH_TASK,
