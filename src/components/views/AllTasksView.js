@@ -6,7 +6,9 @@ const AllTasksView = (props) => {
   let { tasks, deleteTask } = props;
   if (!tasks.length) {
     return (
+      
       <div>
+        <Heading />
         <p>There are no tasks.</p>
         <Link to={`/newtask`}>
           <button>Add New Task</button>
@@ -17,6 +19,7 @@ const AllTasksView = (props) => {
 
   return (
     <div>
+      <Heading />
       {tasks.map((task) => {
         let title = task.title;
         return (

@@ -17,6 +17,7 @@ const AllEmployeesView = (props) => {
 
   return (
     <div>
+      <Heading />
       {props.allEmployees.map((employee) => {
         let name = employee.firstname + " " + employee.lastname;
         return (
